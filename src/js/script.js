@@ -1,32 +1,40 @@
+// Element selectors
 const cardsEl = document.querySelector(".cards");
-// colocar cada card dentro da div.cards
+const allProductsEl = document.getElementsByClassName("card")
+const moreProductsBtnEl = document.querySelector(".more-products-button");
+
+const PRODUCTS_PER_LOAD = 8
+
+// event listeners
+moreProductsBtnEl.addEventListener("click", () => {
+    const productsLoaded = allProductsEl.length;
+
+    // "+ 1" because the first 8 products are already loaded.
+    const pageToLoad = (productsLoaded / PRODUCTS_PER_LOAD) + 1
+    loadCards(pageToLoad)
+})
 
 
+const loadCards = async function(pageNumber = 1) {
 
-const cardData = async function() {
-    // tentar mudar a querystring caso o botão para mostrar mais produtos seja clicado (de page=1 para page=2 e assim sucessivamente)
-    try {
-        const res = await fetch("https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=1")
-        if (!res) throw new Error("Could not fetch any data. Please try again later")
-
-        const data = await res.json()
-        return data
-    } catch(err) {
-        console.log(err.message)
+    const cardData = async function() {
+        try {
+            const res = await fetch(`https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=${pageNumber}`)
+            if (!res) throw new Error("Could not fetch any data. Please try again later")
+    
+            const data = await res.json()
+            return data
+        } catch(err) {
+            console.log(err.message)
+        }
     }
-}
 
-const loadCards = async function() {
     const dataObj = await cardData();
-    const {nextPage, products} = dataObj 
-
-    console.log(products)
-
+    const {products} = dataObj
 
     products.forEach((product) => {
         const {description, id, image, installments, name, oldPrice, price} = product
         
-
         const cardMarkup = 
         `
         <article class="card">
@@ -50,17 +58,13 @@ const loadCards = async function() {
         `
 
         cardsEl.insertAdjacentHTML("beforeend", cardMarkup)
-
     })
-
 }
 
 // colocar num helper.js
-
 const numToReais = function(number) {
     return new Intl.NumberFormat("pt-BR", {style: "currency", currency: "BRL"}).format(number)
 }
-
 
 const init = function() {
     loadCards();
