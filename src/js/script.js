@@ -1,9 +1,12 @@
 import { numToReais } from "./helpers.js";
+import { algoritmoFormData, compartilheFormData } from "./forms.js";
 
 // Element selectors
 const cardsEl = document.querySelector(".cards");
 const allProductsEl = document.getElementsByClassName("card")
 const moreProductsBtnEl = document.querySelector(".more-products-button");
+const algoritmoFormEl = document.querySelector(".algoritmo-form");
+const shareFormEl = document.querySelector(".share-form");
 
 const PRODUCTS_PER_LOAD = 8
 
@@ -23,7 +26,7 @@ const eventListeners = function() {
 const loadCards = async function(pageNumber = 1) {
     const cardData = async function() {
         try {
-            const res = await fetch(`https://frontend-intern-challenge-api.iurykrieger.vercel.assspp/products?page=${pageNumber}`)
+            const res = await fetch(`https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=${pageNumber}`)
             if (!res) throw new Error("Could not fetch any data. Please try again later")
     
             const data = await res.json()
@@ -77,6 +80,9 @@ const loadCards = async function(pageNumber = 1) {
 const init = function() {
     loadCards();
     eventListeners();
+    algoritmoFormData(algoritmoFormEl);
+    compartilheFormData(shareFormEl);
+
 }
 
 init()

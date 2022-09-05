@@ -231,12 +231,12 @@ h1 {
     margin-bottom: 4rem;
 }
 
-.share-form {
+.share-form-styles {
     display: flex;
     justify-content: space-around;
 }
 
-.share-form input {
+.share-form-styles input {
     width: 32rem;
     height: 2.5rem;
     border: 1.5px solid #888;
