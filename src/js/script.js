@@ -1,12 +1,10 @@
 import { numToReais } from "./helpers.js";
-import { algoritmoFormData, compartilheFormData } from "./forms.js";
+import { getFormsData } from "./forms.js";
 
 // Element selectors
 const cardsEl = document.querySelector(".cards");
 const allProductsEl = document.getElementsByClassName("card")
 const moreProductsBtnEl = document.querySelector(".more-products-button");
-const algoritmoFormEl = document.querySelector(".algoritmo-form");
-const shareFormEl = document.querySelector(".share-form");
 
 const PRODUCTS_PER_LOAD = 8
 
@@ -80,8 +78,7 @@ const loadCards = async function(pageNumber = 1) {
 const init = function() {
     loadCards();
     eventListeners();
-    algoritmoFormData(algoritmoFormEl);
-    compartilheFormData(shareFormEl);
+    getFormsData();
 
 }
 
