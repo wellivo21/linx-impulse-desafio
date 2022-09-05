@@ -1,3 +1,5 @@
+import { numToReais } from "./helpers.js";
+
 // Element selectors
 const cardsEl = document.querySelector(".cards");
 const allProductsEl = document.getElementsByClassName("card")
@@ -6,17 +8,19 @@ const moreProductsBtnEl = document.querySelector(".more-products-button");
 const PRODUCTS_PER_LOAD = 8
 
 // event listeners
-moreProductsBtnEl.addEventListener("click", () => {
-    const productsLoaded = allProductsEl.length;
-
-    // "+ 1" because the first 8 products are already loaded.
-    const pageToLoad = (productsLoaded / PRODUCTS_PER_LOAD) + 1
-    loadCards(pageToLoad)
-})
+const eventListeners = function() {
+    // load products on button click
+    moreProductsBtnEl.addEventListener("click", () => {
+        const productsLoaded = allProductsEl.length;
+    
+        // "+ 1" because the first 8 products are already loaded.
+        const pageToLoad = (productsLoaded / PRODUCTS_PER_LOAD) + 1
+        loadCards(pageToLoad)
+    })
+}
 
 
 const loadCards = async function(pageNumber = 1) {
-
     const cardData = async function() {
         try {
             const res = await fetch(`https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=${pageNumber}`)
@@ -30,8 +34,7 @@ const loadCards = async function(pageNumber = 1) {
     }
 
     const dataObj = await cardData();
-    const {products} = dataObj
-
+    const {products} = dataObj;
     products.forEach((product) => {
         const {description, id, image, installments, name, oldPrice, price} = product
         
@@ -62,12 +65,11 @@ const loadCards = async function(pageNumber = 1) {
 }
 
 // colocar num helper.js
-const numToReais = function(number) {
-    return new Intl.NumberFormat("pt-BR", {style: "currency", currency: "BRL"}).format(number)
-}
+
 
 const init = function() {
     loadCards();
+    eventListeners();
 }
 
 init()
