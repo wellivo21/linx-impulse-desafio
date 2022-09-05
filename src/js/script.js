@@ -23,49 +23,56 @@ const eventListeners = function() {
 const loadCards = async function(pageNumber = 1) {
     const cardData = async function() {
         try {
-            const res = await fetch(`https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=${pageNumber}`)
+            const res = await fetch(`https://frontend-intern-challenge-api.iurykrieger.vercel.assspp/products?page=${pageNumber}`)
             if (!res) throw new Error("Could not fetch any data. Please try again later")
     
             const data = await res.json()
             return data
         } catch(err) {
-            console.log(err.message)
+            const errorMarkup = "<p class='error-message'>Não conseguimos obter as informações dos produtos. Por favor, tente novamente em alguns segundos.</p>"
+            cardsEl.classList.remove("cards");
+            cardsEl.insertAdjacentHTML("beforeend", errorMarkup)
         }
     }
 
-    const dataObj = await cardData();
-    const {products} = dataObj;
-    products.forEach((product) => {
-        const {description, id, image, installments, name, oldPrice, price} = product
+    try {
+        const dataObj = await cardData();
+        if (!dataObj) {
+            throw new Error("Could not fetch any data for the products.");
+        }
+    
+        const {products} = dataObj;
+        products.forEach((product) => {
+            const {description, id, image, installments, name, oldPrice, price} = product
+            
+            const cardMarkup = 
+            `
+            <article class="card">
+                <img src="${image}" alt="${name}">
         
-        const cardMarkup = 
-        `
-        <article class="card">
-            <img src="${image}" alt="${name}">
+                <p class="product-title">
+                    ${name}
+                </p>
+                <p class="product-description">
+                    ${description}
+                </p>
+        
+                <p class='product-price'>De: ${numToReais(oldPrice)}</p>
+                <p class='promotional-price'>
+                    <strong>Por: ${numToReais(price)}</strong>
+                </p>
+                <p class='product-price'>ou 2x de ${numToReais((price/2).toFixed(2))}</p>
+        
+                <button class='btn buy-button'>Comprar</button>
+            </article>
+            `
     
-            <p class="product-title">
-                ${name}
-            </p>
-            <p class="product-description">
-                ${description}
-            </p>
-    
-            <p class='product-price'>De: ${numToReais(oldPrice)}</p>
-            <p class='promotional-price'>
-                <strong>Por: ${numToReais(price)}</strong>
-            </p>
-            <p class='product-price'>ou 2x de ${numToReais((price/2).toFixed(2))}</p>
-    
-            <button class='btn buy-button'>Comprar</button>
-        </article>
-        `
-
-        cardsEl.insertAdjacentHTML("beforeend", cardMarkup)
-    })
+            cardsEl.insertAdjacentHTML("beforeend", cardMarkup)
+        })
+    } catch(error) {
+        console.error(error.message)
+    }
 }
-
-// colocar num helper.js
-
 
 const init = function() {
     loadCards();

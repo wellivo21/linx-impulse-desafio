@@ -31,3 +31,12 @@ body {
 .nav-links:focus {
     outline: 5px solid #000;
 }
+
+
+/* ////////////////////////////////// */
+/* Generic classes */
+.error-message {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
