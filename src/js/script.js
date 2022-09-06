@@ -51,20 +51,22 @@ const loadCards = async function(pageNumber = 1) {
             <article class="card">
                 <img src="${image}" alt="${name}">
         
-                <p class="product-title">
-                    ${name}
-                </p>
-                <p class="product-description">
-                    ${description}
-                </p>
-        
-                <p class='product-price'>De: ${numToReais(oldPrice)}</p>
-                <p class='promotional-price'>
-                    <strong>Por: ${numToReais(price)}</strong>
-                </p>
-                <p class='product-price'>ou 2x de ${numToReais((price/2).toFixed(2))}</p>
-        
-                <button class='btn buy-button'>Comprar</button>
+                <div class="product-details">
+                    <p class="product-title">
+                        ${name}
+                    </p>
+                    <p class="product-description">
+                        ${description}
+                    </p>
+            
+                    <p class='product-price'>De: ${numToReais(oldPrice)}</p>
+                    <p class='promotional-price'>
+                        <strong>Por: ${numToReais(price)}</strong>
+                    </p>
+                    <p class='product-price'>ou 2x de ${numToReais((price/2).toFixed(2))}</p>
+            
+                    <button class='btn buy-button'>Comprar</button>
+                </div>
             </article>
             `
     

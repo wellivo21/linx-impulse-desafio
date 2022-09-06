@@ -179,6 +179,12 @@ h1 {
     width: 100%;
 }
 
+.product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
 .product-title {
     font-size: 1.4rem;
 }
