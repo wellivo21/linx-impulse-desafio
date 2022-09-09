@@ -20,7 +20,6 @@ const eventListeners = function() {
     })
 }
 
-
 const loadCards = async function(pageNumber = 1) {
     const cardData = async function() {
         try {
@@ -44,7 +43,7 @@ const loadCards = async function(pageNumber = 1) {
     
         const {products} = dataObj;
         products.forEach((product) => {
-            const {description, id, image, installments, name, oldPrice, price} = product
+            const {description, image, name, oldPrice, price} = product
             
             const cardMarkup = 
             `

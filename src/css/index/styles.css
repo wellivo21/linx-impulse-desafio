@@ -7,18 +7,10 @@ FONT SIZE SYSTEM (px)
 ///// Use type-scale.com for nice (and scaled) font sizes.
 */
 
-
-.container {
-    width: 800px;
-    margin: 0 auto;
-}
-
 header {
     text-align: center;
     padding: 5rem 0 10rem 0;
-
     color: #fff;
-
     position: relative;
 }
 
@@ -70,13 +62,16 @@ h1 {
     color: #888;
     background-color: #fff;
     padding: 1rem 0;
-
     display: block;
     width: 15rem;
-
     border-radius: 5px;
     box-shadow: 0px 3px 10px rgba(0,0,0,0.2);
 }
+
+.nav-links:focus {
+    outline: 5px solid #000;
+}
+
 
 
 /* ////////////////////////////////// */
@@ -138,7 +133,6 @@ h1 {
     background-color: #fff;
     padding: .75rem 0;
     cursor: pointer;
-
     border: 1.5px solid #888;
     border-radius: 5px;
 }
@@ -156,7 +150,6 @@ h1 {
     align-items: center;
     text-align: center;
     gap: 1rem;
-    
     margin: 5rem 0;
 }
   
@@ -221,7 +214,6 @@ h1 {
     background-color: #fff;
     padding: .5rem 0;
     cursor: pointer;
-
     border: 1.5px solid #888;
     border-radius: 5px;
 }
@@ -234,9 +226,7 @@ h1 {
     background-color: #fff;
     padding: .5rem 0;
     cursor: pointer;
-
     width: 27.5rem;
-
     border: 1.5px solid #888;
     border-radius: 5px;
 }
@@ -273,10 +263,8 @@ h1 {
     background-color: #fff;
     padding: .75rem 0;
     cursor: pointer;
-
     border: 1.5px solid #888;
     border-radius: 5px;
-    
     width: 27.5rem;
 }
 

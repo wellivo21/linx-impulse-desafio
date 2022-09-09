@@ -16,6 +16,16 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* End of CSS Reset */
+
+/* General Styles */
+/* ////////////////////////////////// */
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
 .btn {
     transition: 0.2s ease
 }
@@ -28,11 +38,6 @@ body {
 *:focus {
     outline: 5px solid #888;
 }
-
-.nav-links:focus {
-    outline: 5px solid #000;
-}
-
 
 /* ////////////////////////////////// */
 /* Generic classes */
